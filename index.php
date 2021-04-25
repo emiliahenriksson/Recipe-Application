@@ -1,3 +1,8 @@
+<?php
+include "createDB.php";
+ include "config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,27 @@
     <title>Recipe Application</title>
 </head>
 <body>
+
+
+
+<?php
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+
+
+
     
 </body>
 </html>
