@@ -26,6 +26,7 @@
 
 if(isset($_GET['search'])) {
     $search = $_GET['searchQuery'];
+    $search = htmlspecialchars($search, ENT_QUOTES, 'UTF-8');
     
     $query = "SELECT * FROM `recipes` WHERE `title` LIKE '%$search%'";
 
