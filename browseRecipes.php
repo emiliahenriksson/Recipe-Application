@@ -48,6 +48,8 @@ if(isset($_GET['search'])) {
     
     $curl = curl_init();
 
+    $search = str_replace(' ', '%20', $search);
+
     curl_setopt_array($curl, [
         CURLOPT_URL => "https://tasty.p.rapidapi.com/recipes/list?from=0&size=50&q=$search",
         CURLOPT_RETURNTRANSFER => true,
