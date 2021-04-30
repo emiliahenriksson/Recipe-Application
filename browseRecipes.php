@@ -1,4 +1,6 @@
 <?php
+
+session_start();
  include "config.php";
 ?>
 
@@ -24,6 +26,14 @@
 
 <?php
 
+$user = $_SESSION["username"];
+
+if ($_SESSION["username"] != "") {
+    echo "You are logged in as $user";
+} else {
+    echo "You are not logged in";
+}
+
 if(isset($_GET['search'])) {
     $search = $_GET['searchQuery'];
     $search = htmlspecialchars($search, ENT_QUOTES, 'UTF-8');
@@ -38,7 +48,7 @@ if(isset($_GET['search'])) {
 
     while($stmt->fetch()) {
         //echo "$img";
-        $imgName = "<img src='images/$img' >";
+        $imgName = "<a href='single.php?ida=$id'><img src='images/$img' ></a>";
         echo $imgName;
     }
 
@@ -78,8 +88,10 @@ if(isset($_GET['search'])) {
         for ($i = 0; $i <= 50; $i++) {
             //echo $jsonArrayResponse[results][0][thumbnail_url];
             $imgName = $jsonArrayResponse[results][$i][thumbnail_url];
+            $recipeId = $jsonArrayResponse[results][$i][id];
+
             //echo "<img src='$imgName' >";
-            echo "<a href='https://google.com'><img src='$imgName' ></a>";
+            echo "<a href='single.php?ida=$recipeId'><img src='$imgName' ></a>";
         }
         
         //echo $jsonArrayResponse[results][0][thumbnail_url];

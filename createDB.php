@@ -33,7 +33,8 @@ if (!$conn) {
 $tableUser = "CREATE TABLE IF NOT EXISTS User (
     userId INT(4) AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL,
-    password VARCHAR(30) NOT NULL
+    password VARCHAR(30) NOT NULL,
+    UNIQUE (username)
 )";
 
 $tableRecipes = "CREATE TABLE IF NOT EXISTS Recipes (
