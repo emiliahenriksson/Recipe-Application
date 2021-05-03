@@ -46,7 +46,8 @@ if (isset($_POST['save'])) {
 
     while($stmt->fetch()) {
 
-        echo $raId;
+
+        echo "<br> raId: $raId <br>";
         echo $_GET['ida'];
 
 
@@ -54,19 +55,21 @@ if (isset($_POST['save'])) {
             $recipeId = $_GET['id'];
 
             if ($uId == $userId && $rId != $recipeId) {
-                $query = "INSERT INTO `UserRecipes` (userId, recipeId) VALUES ('$userId', '$recipeId')";
-                mysqli_query($db, $query);
+                if ($rId == $recipeId):
+                    $duplicate = "false";
+                endif;
+                echo "<br> db";
             }
             
 
         } else if ($_GET['ida']) {
-            echo "<br> hello1";
             $recipeId = $_GET['ida'];
 
             if ($uId == $userId && $raId != $recipeId) {
-                echo "<br> hello2";
-                $query = "INSERT INTO `UserRecipes` (userId, recipeIdAPI) VALUES ('$userId', '$recipeId')";
-                mysqli_query($db, $query);                
+                if ($raId == $recipeId):
+                    $duplicate = "false";
+                endif;
+                echo "<br> api $duplicate";
             }
 
         }
@@ -75,7 +78,16 @@ if (isset($_POST['save'])) {
 
     $stmt->close();
 
+    echo "it is $duplicate";
 
+    if ($_GET['id'] && $duplicate == "false") {
+        $query = "INSERT INTO `UserRecipes` (userId, recipeId) VALUES ('$userId', '$recipeId')";
+        mysqli_query($db, $query);
+    }
+    else if ($_GET['ida'] && $duplicate == "false") {
+        $query = "INSERT INTO `UserRecipes` (userId, recipeIdAPI) VALUES ('$userId', '$recipeId')";
+        mysqli_query($db, $query);
+    }
 
     
 
