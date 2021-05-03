@@ -48,7 +48,7 @@ if(isset($_GET['search'])) {
 
     while($stmt->fetch()) {
         //echo "$img";
-        $imgName = "<a href='single.php?ida=$id'><img src='images/$img' ></a>";
+        $imgName = "<a href='single.php?id=$id'><img src='images/$img' ></a>";
         echo $imgName;
     }
 
